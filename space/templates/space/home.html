@@ -1,0 +1,52 @@
+{% include "base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- پس زمینه ستاره ها -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- سیاره تزئینی -->
+    <div class="planet"></div>
+    
+    <div class="container">
+        <header>
+            <h1>رصدخانه فضایی زنده</h1>
+            <p class="subtitle">ردیابی لحظه‌ای فعالیت‌های فضایی بشر</p>
+        </header>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">👨‍🚀</div>
+                    <h2 class="card-title">فضانوردان در فضا</h2>
+                </div>
+                <div class="card-content" id="astronauts-count">--</div>
+                <div class="card-footer">تعداد انسان‌های حاضر در فضا در این لحظه</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📍</div>
+                    <h2 class="card-title">موقعیت ایستگاه فضایی</h2>
+                </div>
+                <div class="card-content" id="iss-location">--</div>
+                <div class="card-footer">مختصات جغرافیایی فعلی (طول و عرض)</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🕒</div>
+                    <h2 class="card-title">زمان به‌روزرسانی</h2>
+                </div>
+                <div class="card-content" id="timestamp">--</div>
+                <div class="card-footer">برچسب زمانی یونیکس آخرین به‌روزرسانی</div>
+            </div>
+        </div>
+        
+        <button class="refresh-btn" id="refresh-btn">به‌روزرسانی اطلاعات</button>
+        
+        <div class="last-updated">
+            آخرین به‌روزرسانی: <span id="last-updated">--</span>
+        </div>
+    </div>
+{% endblock content %}
