@@ -1,3 +1,4 @@
+const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 // ایجاد ستاره های درخشان در پس زمینه
 function createStars() {
     const starsContainer = document.getElementById('stars');
@@ -64,33 +65,36 @@ async function fetchISSLocation() {
 // تابع برای دریافت تصویر روز ناسا
 async function fetchAPOD() {
     try {
-        // استفاده از API Key نمونه (در عمل باید از API Key خود استفاده کنید)
-        const response = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+        const response = await fetch("", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json', "X-CSRFToken": csrftoken,},
+        })
+        
         const data = await response.json();
         
-        document.getElementById('apod-title').textContent = data.title;
-        document.getElementById('apod-date').textContent = formatAPODDate(data.date);
+        document.getElementById('apod-title').textContent = data.data.title_fa;
+        document.getElementById('apod-date').textContent = formatAPODDate(data.data.date);
         
         const mediaContainer = document.getElementById('apod-media-container');
         mediaContainer.innerHTML = '';
         
-        if (data.media_type === 'image') {
+        if (data.data.media_type === 'image') {
             const imageContainer = document.createElement('div');
             imageContainer.className = 'apod-image-container';
             
             const image = document.createElement('img');
-            image.src = data.url;
-            image.alt = data.title;
+            image.src = data.data.url;
+            image.alt = data.data.title_fa;
             image.className = 'apod-image';
             
             imageContainer.appendChild(image);
             mediaContainer.appendChild(imageContainer);
-        } else if (data.media_type === 'video') {
+        } else if (data.data.media_type === 'video') {
             const videoContainer = document.createElement('div');
             videoContainer.className = 'apod-video-container';
             
             const iframe = document.createElement('iframe');
-            iframe.src = data.url;
+            iframe.src = data.data.url;
             iframe.className = 'apod-video';
             iframe.allowFullscreen = true;
             
@@ -98,7 +102,7 @@ async function fetchAPOD() {
             mediaContainer.appendChild(videoContainer);
         }
         
-        document.getElementById('apod-explanation').textContent = data.explanation;
+        document.getElementById('apod-explanation').textContent = data.data.explanation_fa;
         
     } catch (error) {
         console.error('Error fetching APOD:', error);
@@ -189,5 +193,5 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('refresh-btn').addEventListener('click', updateAllData);
     
     // به روزرسانی خودکار هر 30 ثانیه
-    setInterval(updateAllData, 30000);
+    setInterval(updateAllData, 3000000);
 });
