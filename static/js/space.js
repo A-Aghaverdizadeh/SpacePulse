@@ -72,10 +72,56 @@ async function updateAllData() {
     await Promise.all([fetchAstronauts(), fetchISSLocation()]);
 }
 
+// مدیریت منوی همبرگری
+function setupMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // بستن منو با کلیک روی لینک‌ها
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+// مدیریت تغییر تم
+function setupThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    // بررسی وضعیت ذخیره شده در localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        themeToggle.classList.add('active');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        themeToggle.classList.toggle('active');
+        
+        // ذخیره حالت انتخاب شده در localStorage
+        if (body.classList.contains('light-mode')) {
+            localStorage.setItem('theme', 'light');
+        } else {
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
+
 // مقداردهی اولیه هنگام لود صفحه
 document.addEventListener('DOMContentLoaded', function() {
     createStars();
     updateAllData();
+    setupMobileMenu();
+    setupThemeToggle();
     
     // اضافه کردن event listener برای دکمه به روزرسانی
     document.getElementById('refresh-btn').addEventListener('click', updateAllData);
