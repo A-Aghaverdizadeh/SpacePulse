@@ -61,6 +61,68 @@ async function fetchISSLocation() {
     }
 }
 
+// تابع برای دریافت تصویر روز ناسا
+async function fetchAPOD() {
+    try {
+        // استفاده از API Key نمونه (در عمل باید از API Key خود استفاده کنید)
+        const response = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+        const data = await response.json();
+        
+        document.getElementById('apod-title').textContent = data.title;
+        document.getElementById('apod-date').textContent = formatAPODDate(data.date);
+        
+        const mediaContainer = document.getElementById('apod-media-container');
+        mediaContainer.innerHTML = '';
+        
+        if (data.media_type === 'image') {
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'apod-image-container';
+            
+            const image = document.createElement('img');
+            image.src = data.url;
+            image.alt = data.title;
+            image.className = 'apod-image';
+            
+            imageContainer.appendChild(image);
+            mediaContainer.appendChild(imageContainer);
+        } else if (data.media_type === 'video') {
+            const videoContainer = document.createElement('div');
+            videoContainer.className = 'apod-video-container';
+            
+            const iframe = document.createElement('iframe');
+            iframe.src = data.url;
+            iframe.className = 'apod-video';
+            iframe.allowFullscreen = true;
+            
+            videoContainer.appendChild(iframe);
+            mediaContainer.appendChild(videoContainer);
+        }
+        
+        document.getElementById('apod-explanation').textContent = data.explanation;
+        
+    } catch (error) {
+        console.error('Error fetching APOD:', error);
+        const mediaContainer = document.getElementById('apod-media-container');
+        mediaContainer.innerHTML = `
+            <div class="apod-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>خطا در دریافت تصویر روز ناسا. لطفاً دوباره تلاش کنید.</p>
+            </div>
+        `;
+        document.getElementById('apod-explanation').textContent = '';
+    }
+}
+
+// تابع برای فرمت تاریخ APOD
+function formatAPODDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fa-IR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
 // تابع برای به روزرسانی همه اطلاعات
 async function updateAllData() {
     // نمایش وضعیت در حال بارگذاری
@@ -69,7 +131,7 @@ async function updateAllData() {
     });
     
     // دریافت اطلاعات
-    await Promise.all([fetchAstronauts(), fetchISSLocation()]);
+    await Promise.all([fetchAstronauts(), fetchISSLocation(), fetchAPOD()]);
 }
 
 // مدیریت منوی همبرگری
