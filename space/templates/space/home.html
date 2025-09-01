@@ -1,32 +1,16 @@
 {% include "base.html" %}
 {% load static %}
 
+{% block title %}خانه{% endblock title %}
+
+{% block css %}
+
+{% endblock css %}
+
 {% block content %}
     <!-- نوار ناوبری -->
-    <nav class="navbar">
-        <div class="logo">
-            <div class="logo-text">فضا نگار</div>
-        </div>
-        
-        <ul class="nav-links">
-            <li><a href="#" class="active">خانه</a></li>
-            <li><a href="#">اطلاعات زنده</a></li>
-            <li><a href="#">درباره ما</a></li>
-            <li><a href="#">تماس با ما</a></li>
-        </ul>
-        
-        <div class="nav-actions">
-            <div class="theme-toggle" id="theme-toggle">
-                <div class="toggle-thumb"></div>
-            </div>
-            
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    
+    {% include 'include/header.html' %}
     
     <!-- پس زمینه ستاره ها -->
     <div class="stars" id="stars"></div>

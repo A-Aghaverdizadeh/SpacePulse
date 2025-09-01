@@ -28,3 +28,16 @@ class HomePage(View):
 
         return JsonResponse({'data': data})
     
+class BlogPage(View):
+    template_name = 'space/blog.html'
+
+    def get(self, requests):
+
+        context = {
+
+        }
+
+        return render(requests, self.template_name, context)
+    
+    def post(self, requests):
+        pass

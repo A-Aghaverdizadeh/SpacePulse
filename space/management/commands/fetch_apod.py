@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from deep_translator import GoogleTranslator
 from space.models import APOD
 
-NASA_API_KEY = "add your own api key"
+NASA_API_KEY = "qgHYxv1XyGpEmgzlas7hp8QhesvIW7GDJYvD0QCc"
 NASA_APOD_URL = "https://api.nasa.gov/planetary/apod"
 
 
