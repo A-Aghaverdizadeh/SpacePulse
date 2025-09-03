@@ -3,3 +3,5 @@ db.sqlite3
 
 # Ignore env file
 .env
+
+test.py

@@ -41,3 +41,14 @@ class BlogPage(View):
     
     def post(self, requests):
         pass
+
+class NeoWs(View):
+    template_name = 'space/neows.html'
+
+    def get(self, requests):
+
+        context = {
+
+        }
+
+        return render(requests, self.template_name, context)
