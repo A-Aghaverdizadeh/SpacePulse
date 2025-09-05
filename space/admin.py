@@ -7,5 +7,5 @@ admin.site.register(APOD)
 
 @admin.register(NeoWs)
 class NeoWsAdmin(admin.ModelAdmin):
-    list_display = ['nasa_id' ,'name', 'date', 'is_dangerous']
+    list_display = ['nasa_id' ,'name', 'date', 'is_dangerous', 'miss_distance']
     list_filter = ['is_dangerous']

@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from datetime import datetime
+from django.db.models import Min, Max
 from django.http import JsonResponse
 from django.views import View
-from .models import APOD
+from .models import APOD, NeoWs
 
 class HomePage(View):
     template_name = 'space/home.html'
@@ -42,13 +44,32 @@ class BlogPage(View):
     def post(self, requests):
         pass
 
-class NeoWs(View):
+class NeoWsView(View):
     template_name = 'space/neows.html'
+    date = datetime.today().date()
+
+    today = date.strftime("%Y-%m-%d")
 
     def get(self, requests):
+        total = NeoWs.objects.count()
+        stats = NeoWs.objects.aggregate(
+            min_distance=Min("miss_distance"),
+            max_diameter=Max("EsDiameter")
+        )
+        neows_count = NeoWs.objects.filter(date=self.today).count()
+        neows_danger = NeoWs.objects.filter(is_dangerous=True).count()
+        neows_safe = NeoWs.objects.filter(is_dangerous=False).count()
+
+        danger_pct = round((neows_danger / total) * 100, 2) if total else 0
+        
 
         context = {
-
+            'neows_count': neows_count,
+            'neows_danger': neows_danger,
+            'neows_safe': neows_safe,
+            'min_distance': stats["min_distance"],
+            'max_diameter': stats["max_diameter"],
+            'danger_pct': danger_pct,
         }
 
         return render(requests, self.template_name, context)

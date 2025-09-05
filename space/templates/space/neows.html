@@ -2,6 +2,19 @@
 {% load static %}
 
 {% block css %}
+    <style>
+        .pie-chart {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ff6b6b 0% {{ danger_pct }}%,
+                #4cd964 {{ danger_pct }}% 100%
+            );
+            margin: 0 auto;
+            position: relative;
+        }
+    </style>
     <link rel="stylesheet" href="{% static 'css/neows.css' %}">
 {% endblock css %}
 
@@ -72,25 +85,25 @@
         <div class="stats-container">
             <div class="stat-card">
                 <div class="stat-label">تعداد کل اجرام امروز</div>
-                <div class="stat-value">۱۲</div>
+                <div class="stat-value">{{ neows_count }}</div>
                 <div class="stat-label">جرم نزدیک به زمین</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-label">اجرام خطرناک</div>
-                <div class="stat-value">۳</div>
+                <div class="stat-value">{{ neows_danger }}</div>
                 <div class="stat-label">Potential Hazardous Asteroids</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-label">نزدیک‌ترین فاصله</div>
-                <div class="stat-value">۷۲۴,۱۶۵ km</div>
+                <div class="stat-value">{{ min_distance|floatformat:2 }} کیلومتر</div>
                 <div class="stat-label">از مرکز زمین</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-label">بزرگ‌ترین جرم</div>
-                <div class="stat-value">۱.۲ km</div>
+                <div class="stat-value">{{ max_diameter|floatformat:2 }} متر</div>
                 <div class="stat-label">قطر تخمینی</div>
             </div>
         </div>
@@ -102,11 +115,11 @@
             <div class="chart-legend">
                 <div class="legend-item">
                     <div class="legend-color legend-danger"></div>
-                    <div class="legend-text">اجرام خطرناک (۳)</div>
+                    <div class="legend-text">اجرام خطرناک ({{ neows_danger }})</div>
                 </div>
                 <div class="legend-item">
                     <div class="legend-color legend-safe"></div>
-                    <div class="legend-text">اجرام بی‌خطر (۹)</div>
+                    <div class="legend-text">اجرام بی‌خطر ({{ neows_safe }})</div>
                 </div>
             </div>
         </div>
@@ -137,126 +150,6 @@
                     </div>
                 </div>
                 <div class="hazard-badge hazard-true">خطر برخورد احتمالی</div>
-            </div>
-            
-            <!-- جرم ۲ -->
-            <div class="neo-card hazardous">
-                <h3 class="neo-name">2023 PV</h3>
-                <div class="neo-info">
-                    <div class="info-item">
-                        <span class="info-label">فاصله از زمین:</span>
-                        <span class="info-value">۱,۲۴۵,۷۸۹ km</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">سرعت نسبی:</span>
-                        <span class="info-value">۱۲.۷ km/s</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قطر تخمینی:</span>
-                        <span class="info-value">۲۴۰ m - ۵۳۰ m</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قدر مطلق:</span>
-                        <span class="info-value">۲۱.۳ H</span>
-                    </div>
-                </div>
-                <div class="hazard-badge hazard-true">خطر برخورد احتمالی</div>
-            </div>
-            
-            <!-- جرم ۳ -->
-            <div class="neo-card safe">
-                <h3 class="neo-name">2023 OA2</h3>
-                <div class="neo-info">
-                    <div class="info-item">
-                        <span class="info-label">فاصله از زمین:</span>
-                        <span class="info-value">۳,۵۶۷,۱۲۳ km</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">سرعت نسبی:</span>
-                        <span class="info-value">۱۰.۵ km/s</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قطر تخمینی:</span>
-                        <span class="info-value">۸۰ m - ۱۸۰ m</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قدر مطلق:</span>
-                        <span class="info-value">۲۲.۱ H</span>
-                    </div>
-                </div>
-                <div class="hazard-badge hazard-false">بی‌خطر</div>
-            </div>
-            
-            <!-- جرم ۴ -->
-            <div class="neo-card safe">
-                <h3 class="neo-name">2023 RB4</h3>
-                <div class="neo-info">
-                    <div class="info-item">
-                        <span class="info-label">فاصله از زمین:</span>
-                        <span class="info-value">۵,۲۳۴,۵۶۷ km</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">سرعت نسبی:</span>
-                        <span class="info-value">۸.۹ km/s</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قطر تخمینی:</span>
-                        <span class="info-value">۱۲۰ m - ۲۷۰ m</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قدر مطلق:</span>
-                        <span class="info-value">۲۰.۵ H</span>
-                    </div>
-                </div>
-                <div class="hazard-badge hazard-false">بی‌خطر</div>
-            </div>
-            
-            <!-- جرم ۵ -->
-            <div class="neo-card hazardous">
-                <h3 class="neo-name">2023 SC1</h3>
-                <div class="neo-info">
-                    <div class="info-item">
-                        <span class="info-label">فاصله از زمین:</span>
-                        <span class="info-value">۲,۱۰۹,۸۷۶ km</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">سرعت نسبی:</span>
-                        <span class="info-value">۱۴.۳ km/s</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قطر تخمینی:</span>
-                        <span class="info-value">۳۵۰ m - ۷۸۰ m</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قدر مطلق:</span>
-                        <span class="info-value">۱۹.۸ H</span>
-                    </div>
-                </div>
-                <div class="hazard-badge hazard-true">خطر برخورد احتمالی</div>
-            </div>
-            
-            <!-- جرم ۶ -->
-            <div class="neo-card safe">
-                <h3 class="neo-name">2023 TD2</h3>
-                <div class="neo-info">
-                    <div class="info-item">
-                        <span class="info-label">فاصله از زمین:</span>
-                        <span class="info-value">۶,۷۸۹,۰۱۲ km</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">سرعت نسبی:</span>
-                        <span class="info-value">۷.۲ km/s</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قطر تخمینی:</span>
-                        <span class="info-value">۹۵ m - ۲۱۰ m</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قدر مطلق:</span>
-                        <span class="info-value">۲۱.۹ H</span>
-                    </div>
-                </div>
-                <div class="hazard-badge hazard-false">بی‌خطر</div>
             </div>
         </div>
         

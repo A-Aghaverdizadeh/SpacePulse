@@ -391,17 +391,17 @@ body.light-mode .chart-title {
     color: #2563eb;
 }
 
-.pie-chart {
+/* .pie-chart {
     width: 250px;
     height: 250px;
     border-radius: 50%;
     background: conic-gradient(
-        #ff6b6b 0% 30%,
-        #4cd964 30% 100%
+        #ff6b6b 0% 50%,
+        #4cd964 50% 100%
     );
     margin: 0 auto;
     position: relative;
-}
+} */
 
 .chart-legend {
     display: flex;

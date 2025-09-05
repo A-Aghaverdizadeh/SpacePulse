@@ -20,15 +20,16 @@ class APOD(models.Model):
     
 
 # NeoWs defines: Near Earth Object Web Service 
+
 class NeoWs(models.Model):
     nasa_id = models.CharField(max_length=50, unique=True)
     date = models.DateField()
     name = models.CharField(max_length=264)
-    EsDiameter = models.CharField(max_length=10)
+    EsDiameter = models.FloatField()
     is_dangerous = models.BooleanField(default=False)
-    miss_distance = models.CharField(max_length=20)
-    nearest_approach = models.CharField(max_length=20)
-    relative_speed = models.CharField(max_length=20)
+    miss_distance = models.FloatField()
+    nearest_approach = models.CharField(max_length=50)
+    relative_speed = models.FloatField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
