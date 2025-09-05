@@ -18,6 +18,7 @@ class APOD(models.Model):
 
 # NeoWs defines: Near Earth Object Web Service 
 class NeoWs(models.Model):
+    date = models.DateField(unique=True)
     name = models.CharField(max_length=264)
     EsDiameter = models.CharField(max_length=10)
     is_dangerous = models.BooleanField(default=False)
