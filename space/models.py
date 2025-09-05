@@ -12,19 +12,26 @@ class APOD(models.Model):
     image_url = models.URLField()
     media_type = models.CharField(max_length=20)
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
     def __str__(self):
         return f"APOD {self.date}"
     
 
 # NeoWs defines: Near Earth Object Web Service 
 class NeoWs(models.Model):
-    date = models.DateField(unique=True)
+    nasa_id = models.CharField(max_length=50, unique=True)
+    date = models.DateField()
     name = models.CharField(max_length=264)
     EsDiameter = models.CharField(max_length=10)
     is_dangerous = models.BooleanField(default=False)
     miss_distance = models.CharField(max_length=20)
     nearest_approach = models.CharField(max_length=20)
     relative_speed = models.CharField(max_length=20)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return f"NeoWs {self.name}"

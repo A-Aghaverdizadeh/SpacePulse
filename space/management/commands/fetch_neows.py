@@ -35,6 +35,7 @@ class Command(BaseCommand):
 
         for date, objects in data["near_earth_objects"].items():
             for obj in objects:
+                neo_id = obj["id"]
                 name = obj["name"]
                 diameter = obj["estimated_diameter"]["meters"]["estimated_diameter_max"]
                 hazardous = obj["is_potentially_hazardous_asteroid"]
@@ -47,8 +48,9 @@ class Command(BaseCommand):
                 relative_speed = approach["relative_velocity"]["kilometers_per_second"]
                 
                 neows, created = NeoWs.objects.update_or_create(
-                    date=today,
+                    nasa_id=neo_id,
                     defaults={
+                        'date': date,
                         'name': name,
                         'EsDiameter': diameter,
                         'is_dangerous': hazardous,
@@ -58,7 +60,7 @@ class Command(BaseCommand):
                     }
                 )
 
-        if created:
-            self.stdout.write(self.style.SUCCESS(f"NeoWs for {neows.date} saved."))
-        else:
-            self.stdout.write(self.style.WARNING(f"NeoWs for {neows.date} updated."))
+                if created:
+                    self.stdout.write(self.style.SUCCESS(f"NeoWs for {neows.date} saved."))
+                else:
+                    self.stdout.write(self.style.WARNING(f"NeoWs for {neows.date} updated."))
