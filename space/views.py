@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from datetime import datetime
 from django.db.models import Min, Max
 from django.http import JsonResponse
@@ -73,3 +74,34 @@ class NeoWsView(View):
         }
 
         return render(requests, self.template_name, context)
+
+    def post(self, requests):
+        page = int(requests.GET.get("page", 1))
+        per_page = int(requests.GET.get("per_page", 6))
+
+        neows = NeoWs.objects.all().order_by('-date')
+
+        paginator = Paginator(neows, per_page)
+
+        page_obj = paginator.get_page(page)
+
+        data = []
+        for neo in page_obj:
+            data.append({
+                'name': neo.name,
+                'diameter': neo.EsDiameter,
+                'is_dangerous': neo.is_dangerous,
+                'miss_distance': neo.miss_distance,
+                'nearest_approach': neo.nearest_approach,
+                'relative_speed': neo.relative_speed,
+            })
+
+        response = {
+            'neos': data,
+            'total_pages': paginator.num_pages,
+            'current_page': page_obj.number,
+            'has_next': page_obj.has_next(),
+            'has_previous': page_obj.has_previous(),
+        }
+
+        return JsonResponse(response)

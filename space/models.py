@@ -24,12 +24,12 @@ class APOD(models.Model):
 class NeoWs(models.Model):
     nasa_id = models.CharField(max_length=50, unique=True)
     date = models.DateField()
-    name = models.CharField(max_length=264)
-    EsDiameter = models.FloatField()
-    is_dangerous = models.BooleanField(default=False)
-    miss_distance = models.FloatField()
-    nearest_approach = models.CharField(max_length=50)
-    relative_speed = models.FloatField()
+    name = models.CharField(max_length=264) #
+    EsDiameter = models.FloatField() #
+    is_dangerous = models.BooleanField(default=False) #
+    miss_distance = models.FloatField() #
+    nearest_approach = models.CharField(max_length=50) #
+    relative_speed = models.FloatField() #
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)

@@ -15,7 +15,10 @@
 
         {% endblock content %}
 
-        <script src="{% static 'js/space.js' %}"></script>
+        {% comment %} <script src="{% static 'js/space.js' %}"></script> {% endcomment %}
+        {% block script %}
+        
+        {% endblock script %}
     </body>
 </html>
 
