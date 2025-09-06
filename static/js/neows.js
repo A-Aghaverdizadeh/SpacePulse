@@ -28,6 +28,51 @@ function createStars() {
     }
 }
 
+// مدیریت منوی همبرگری
+function setupMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // بستن منو با کلیک روی لینک‌ها
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+
+// مدیریت تغییر تم
+function setupThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    // بررسی وضعیت ذخیره شده در localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        themeToggle.classList.add('active');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        themeToggle.classList.toggle('active');
+        
+        // ذخیره حالت انتخاب شده در localStorage
+        if (body.classList.contains('light-mode')) {
+            localStorage.setItem('theme', 'light');
+        } else {
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
+
 async function fetchNeos(page = 1, perPage = 6) {
     const response = await fetch(`/neows?page=${page}&per_page=${perPage}`, {
         method: "POST",
@@ -67,12 +112,22 @@ function createNeoCard(neo) {
     return card;
 }
 
-
-function renderPagination() {
+function renderPagination(totalPages, currentPage) {
     const pageNumbers = document.getElementById("page-numbers");
     pageNumbers.innerHTML = "";
 
-    for (let i = 1; i <= totalPages; i++) {
+    // چند تا شماره صفحه همزمان نمایش داده بشه
+    const maxVisible = 5;  
+
+    let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let end = start + maxVisible - 1;
+
+    if (end > totalPages) {
+        end = totalPages;
+        start = Math.max(1, end - maxVisible + 1);
+    }
+
+    for (let i = start; i <= end; i++) {
         const a = document.createElement("a");
         a.href = "#";
         a.textContent = i;
@@ -80,15 +135,30 @@ function renderPagination() {
         
         a.addEventListener("click", (e) => {
             e.preventDefault();
-            displayPage(i);
+            displayPage(i); // این تابع باید ریکوئست به سرور بزنه و دیتا رو بیاره
         });
 
         pageNumbers.appendChild(a);
     }
 
-    document.getElementById("prev-page").disabled = currentPage === 1;
-    document.getElementById("next-page").disabled = currentPage === totalPages;
+    // دکمه قبلی و بعدی
+    const prevBtn = document.getElementById("prev-page");
+    const nextBtn = document.getElementById("next-page");
+
+    prevBtn.classList.toggle("disabled", currentPage === 1);
+    nextBtn.classList.toggle("disabled", currentPage === totalPages);
+
+    prevBtn.onclick = (e) => {
+        e.preventDefault();
+        if (currentPage > 1) displayPage(currentPage - 1);
+    };
+
+    nextBtn.onclick = (e) => {
+        e.preventDefault();
+        if (currentPage < totalPages) displayPage(currentPage + 1);
+    };
 }
+
 
 async function displayPage(page = 1) {
     const grid = document.getElementById("neo-grid");
@@ -103,28 +173,10 @@ async function displayPage(page = 1) {
         grid.appendChild(card);
     });
 
-    renderPagination();
+    setupMobileMenu();
+    setupThemeToggle();
+    renderPagination(data.total_pages, currentPage);
 }
-
-document.getElementById("prev-page").addEventListener("click", (e) => {
-    e.preventDefault();
-    if (currentPage > 1) displayPage(currentPage - 1);
-});
-
-document.getElementById("next-page").addEventListener("click", (e) => {
-    e.preventDefault();
-    if (currentPage < totalPages) displayPage(currentPage + 1);
-});
-
-document.addEventListener("DOMContentLoaded", async () => {
-    const grid = document.getElementById("neo-grid");
-    const neos = await getNeowsData();   // صبر کن دیتا بیاد
-
-    neos.forEach(neo => {
-        const card = createNeoCard(neo);
-        grid.appendChild(card);
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     createStars();

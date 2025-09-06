@@ -128,36 +128,14 @@
         <h2 style="color: #8f94fb; margin-bottom: 1.5rem; padding-right: 1rem;">اجرام نزدیک به زمین در تاریخ ۱۰ شهریور ۱۴۰۲</h2>
         
         <div class="neo-grid" id='neo-grid'>
-            <!-- جرم ۱ -->
-            {% comment %} <div class="neo-card hazardous">
-                <h3 class="neo-name" id='neo-name'>2023 QW1</h3>
-                <div class="neo-info">
-                    <div class="info-item">
-                        <span class="info-label">فاصله از زمین:</span>
-                        <span class="info-value" id='distance-value'></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">سرعت نسبی:</span>
-                        <span class="info-value" id='speed-value'></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">قطر تخمینی:</span>
-                        <span class="info-value" id='diameter-value'></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">زمان نزدیک ترین موقعیت:</span>
-                        <span class="info-value" id='nearest-value'></span>
-                    </div>
-                </div>
-                <div class="hazard-badge hazard-true">خطر برخورد احتمالی</div>
-            </div> {% endcomment %}
+            <!-- جرم ها -->
         </div>
         
         <!-- صفحه‌بندی -->
-        <div class="pagination" id="page-numbers">
-            <a href="#" id="next-page"><i class="fas fa-arrow-right"></i></a>
+        <div class="pagination">
+            <a href="#" id="prev-page"><i class="fas fa-arrow-right"></i></a>
             <span id="page-numbers"></span>
-            <a href="#" id="prev-page"><i class="fas fa-arrow-left"></i></a>
+            <a href="#" id="next-page"><i class="fas fa-arrow-left"></i></a>
         </div>
     </div>
 {% endblock content %}

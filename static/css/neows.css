@@ -443,8 +443,14 @@ body.light-mode .legend-text {
 .pagination {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 0.5rem;
     margin-top: 2rem;
+}
+
+#page-numbers {
+    display: flex;        /* شماره صفحات هم ردیفی بشن */
+    gap: 0.5rem;          /* فاصله بین شماره‌ها */
 }
 
 .pagination a {
