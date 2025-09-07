@@ -180,40 +180,39 @@ async function displayPage(page = 1) {
 
 document.addEventListener('DOMContentLoaded', function() {
     createStars();
-
-    const applyFiltersBtn = document.getElementById('apply-filters');
-    const resetFiltersBtn = document.getElementById('reset-filters');
-    
-    applyFiltersBtn.addEventListener('click', function() {
-        const date = document.getElementById('date').value;
-        const hazardous = document.getElementById('hazardous').value;
-        const distance = document.getElementById('distance').value;
-        
-        alert(`فیلترها اعمال شدند:\nتاریخ: ${date}\nخطر برخورد: ${hazardous}\nفاصله: ${distance}`);
-        
-        // در اینجا می‌توانید کد فیلتر کردن واقعی را اضافه کنید
-    });
-    
-    resetFiltersBtn.addEventListener('click', function() {
-        document.getElementById('date').value = '2023-08-30';
-        document.getElementById('hazardous').value = 'all';
-        document.getElementById('distance').value = 'all';
-        
-        alert('فیلترها بازنشانی شدند.');
-        
-        // در اینجا می‌توانید کد بازنشانی فیلترها را اضافه کنید
-    });
-    
-    // شبیه‌سازی داده‌های NeoWs
-    const neos = document.querySelectorAll('.neo-card');
-    
-    neos.forEach(neo => {
-        neo.addEventListener('click', function() {
-            const name = this.querySelector('.neo-name').textContent;
-            alert(`جزئیات بیشتر درباره ${name}\nاین بخش می‌تواند یک مودال یا صفحه جداگانه برای نمایش جزئیات باز کند.`);
-        });
-    });
-
     displayPage(currentPage);
 
+    // جاوا اسکریپت بخش فیلتر ها اگه برای استفاده
+    // const applyFiltersBtn = document.getElementById('apply-filters');
+    // const resetFiltersBtn = document.getElementById('reset-filters');
+    
+    // applyFiltersBtn.addEventListener('click', function() {
+    //     const date = document.getElementById('date').value;
+    //     const hazardous = document.getElementById('hazardous').value;
+    //     const distance = document.getElementById('distance').value;
+        
+    //     alert(`فیلترها اعمال شدند:\nتاریخ: ${date}\nخطر برخورد: ${hazardous}\nفاصله: ${distance}`);
+        
+    //     // در اینجا می‌توانید کد فیلتر کردن واقعی را اضافه کنید
+    // });
+    
+    // resetFiltersBtn.addEventListener('click', function() {
+    //     document.getElementById('date').value = '2023-08-30';
+    //     document.getElementById('hazardous').value = 'all';
+    //     document.getElementById('distance').value = 'all';
+        
+    //     alert('فیلترها بازنشانی شدند.');
+        
+    //     // در اینجا می‌توانید کد بازنشانی فیلترها را اضافه کنید
+    // });
+    
+    // // شبیه‌سازی داده‌های NeoWs
+    // const neos = document.querySelectorAll('.neo-card');
+    
+    // neos.forEach(neo => {
+    //     neo.addEventListener('click', function() {
+    //         const name = this.querySelector('.neo-name').textContent;
+    //         alert(`جزئیات بیشتر درباره ${name}\nاین بخش می‌تواند یک مودال یا صفحه جداگانه برای نمایش جزئیات باز کند.`);
+    //     });
+    // });
 })

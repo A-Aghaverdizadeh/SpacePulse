@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('blog', views.BlogPage.as_view(), name='blog'),
     path('neows', views.NeoWsView.as_view(), name='neows'),
+    path('about-us', views.AboutUsView.as_view(), name='about-us')
 ]
 

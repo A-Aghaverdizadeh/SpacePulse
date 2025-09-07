@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/about-us.css' %}">
+    <style>
+        .contact-icon svg{
+            width: 25px;
+            height: 25px;
+        }
+        .social-link svg{
+            width: 20px;
+            height: 20px;
+        }
+        .mission-vision svg{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+{% endblock css %}
+
+{% block content %}
+    <!-- نوار ناوبری -->
+    
+    {% include 'include/header.html' %}
+    
+    <!-- پس زمینه ستاره ها -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- خورشید برای حالت روز -->
+    <div class="sun"></div>
+    
+    <!-- ابرهای شناور -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    
+    <!-- سیاره تزئینی -->
+    <div class="planet"></div>
+    
+    <div class="container">
+        <!-- هدر -->
+        <header class="about-header">
+            <h1 class="about-title">درباره تیم روبودو</h1>
+            <p class="about-subtitle">ما تیم برنامه نویسی روبودو هستیم که در این پروژه هدف ما اشتراک‌گذاری شگفتی‌های کیهان با تمام مردم ایرانه.</p>
+        </header>
+        
+        <!-- ماموریت و چشم انداز -->
+        <section class="mission-vision">
+            <div class="mission-card">
+                <div class="mission-icon">
+                    {% include "svg/bullseye-arrow.svg" %}
+                </div>
+                <h3 class="mission-title">ماموریت ما</h3>
+                <p class="mission-text">ماموریت ما ارائه اطلاعات دقیق، به‌روز و قابل فهم درباره فضا و نجوم به همه علاقه‌مندان است. ما بر آنیم تا با استفاده از فناوری‌های روز، دانش نجومی را در دسترس همگان قرار دهیم.</p>
+            </div>
+            
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-eye"></i>
+                    {% include "svg/eye.svg" %}
+                </div>
+                <h3 class="vision-title">چشم انداز ما</h3>
+                <p class="vision-text">چشم انداز ما ارائه برترین نمونه کار ها و نشان دادن مهارت هایمان به مشتریان است.</p>
+            </div>
+        </section>
+        
+        <!-- تیم ما -->
+        <section class="team-section">
+            <h2 class="section-title">تیم ما</h2>
+            
+            <div class="team-grid">
+
+                <!-- عضو تیم ۳ -->
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="امیر حسینی" class="member-image">
+                    <h3 class="member-name">امیر حسینی</h3>
+                    <p class="member-role">توسعه‌دهنده ارشد</p>
+                    <p class="member-bio">امیر مسئول توسعه پلتفرم‌های نرم‌افزاری ما است. او عاشق ترکیب علم نجوم با فناوری‌های روز است تا تجربه‌های کاربری منحصر به فردی خلق کند.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">{% include "svg/instagram.svg" %}</a>
+                        <a href="#" class="social-link">{% include "svg/telegram.svg" %}</a>
+                        <a href="#" class="social-link">{% include "svg/github.svg" %}</a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- تاریخچه -->
+        {% comment %} <section class="history-section">
+            <h2 class="section-title">تاریخچه ما</h2>
+            
+            <div class="timeline">
+                <!-- رویداد ۱ -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۱۳۹۵</div>
+                        <div class="timeline-text">تأسیس رصدخانه فضایی با هدف ارائه اطلاعات نجومی به زبان فارسی</div>
+                    </div>
+                </div>
+                
+                <!-- رویداد ۲ -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۱۳۹۷</div>
+                        <div class="timeline-text">راه‌اندازی اولین نسخه وب‌سایت با قابلیت رصد آنلاین اجرام آسمانی</div>
+                    </div>
+                </div>
+                
+                <!-- رویداد ۳ -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۱۳۹۹</div>
+                        <div class="timeline-text">همکاری با ناسا و اسا برای دریافت داده‌های مستقیم از تلسکوپ‌های فضایی</div>
+                    </div>
+                </div>
+                
+                <!-- رویداد ۴ -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۱۴۰۰</div>
+                        <div class="timeline-text">راه‌اندازی اپلیکیشن موبایل و جذب بیش از ۱۰۰ هزار کاربر فعال</div>
+                    </div>
+                </div>
+                
+                <!-- رویداد ۵ -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۱۴۰۲</div>
+                        <div class="timeline-text">برگزاری اولین کنفرانس بین‌المللی نجوم به میزبانی رصدخانه فضایی</div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+        
+        <!-- تماس با ما -->
+        <section class="contact-section">
+            <h2 class="section-title">تماس با ما</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            {% include "svg/location-dot.svg" %}
+                        </div>
+                        <div class="contact-details">
+                            <h4>آدرس</h4>
+                            <p>ایران، اردبیل، مشگین شهر، خیابان ایت الله مشگینی، بالاتر از بانک صادرات، دفتر روبودو</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            {% include "svg/phone.svg" %}
+                        </div>
+                        <div class="contact-details">
+                            <h4>تلفن</h4>
+                            <p>09050786194</p>
+                            <p>09017747187</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            {% include "svg/envelope.svg" %}
+                        </div>
+                        <div class="contact-details">
+                            <h4>ایمیل</h4>
+                            <p>amiraghaverdigit@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            {% include "svg/clock.svg" %}
+                        </div>
+                        <div class="contact-details">
+                            <h4>ساعات کاری</h4>
+                            <p>شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر<br>پنجشنبه: ۸ صبح تا ۱۲ ظهر</p>
+                        </div>
+                    </div>
+                    
+                    {% comment %} <div class="contact-item">
+                        <div class="contact-icon">
+                            {% include "svg/users.svg" %}
+                        </div>
+                        <div class="contact-details">
+                            <h4>حامیان ما</h4>
+                            <p>ناسا، سازمان فضایی اروپا، دانشگاه شریف، دانشگاه تهران</p>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- فوتر -->
+        <footer class="footer">
+            <p>© 1404 - تمامی حقوق برای <a href="https://robodev.ir/">روبودو</a> محفوظ است.</p>
+        </footer>
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'js/about-us.js' %}"></script>
+{% endblock script %}

@@ -196,58 +196,61 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateAllData, 3000000);
 });
 
+// این قسمت کد برای وبلاگه
 // مدیریت فیلتر دسته‌بندی
-document.addEventListener('DOMContentLoaded', function() {
-    const categoryLinks = document.querySelectorAll('.categories-list a');
-    
-    categoryLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // حذف کلاس active از همه لینک‌ها
-            categoryLinks.forEach(l => l.classList.remove('active'));
-            
-            // اضافه کردن کلاس active به لینک کلیک شده
-            this.classList.add('active');
-            
-            // در اینجا می‌توانید کد فیلتر کردن مقالات بر اساس دسته‌بندی را اضافه کنید
-            const category = this.textContent.split(' ')[0];
-            alert(`فیلتر مقالات بر اساس دسته‌بندی: ${category}`);
-        });
-    });
-    
-    // مدیریت جستجو
-    const searchInput = document.querySelector('.search-box input');
-    const searchIcon = document.querySelector('.search-box i');
-    
-    searchIcon.addEventListener('click', function() {
-        performSearch();
-    });
-    
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-    
-    function performSearch() {
-        const searchTerm = searchInput.value.trim();
-        if (searchTerm) {
-            alert(`جستجو برای: ${searchTerm}`);
-            // در اینجا می‌توانید کد جستجوی واقعی را اضافه کنید
-        }
-    }
 
-    // مدیریت فرم خبرنامه
-    const newsletterForm = document.querySelector('form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = this.querySelector('input[type="email"]');
-            if (emailInput.value) {
-                alert(`ایمیل ${emailInput.value} با موفقیت ثبت شد!`);
-                emailInput.value = '';
-            }
-        });
-    }
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     const categoryLinks = document.querySelectorAll('.categories-list a');
+    
+//     categoryLinks.forEach(link => {
+//         link.addEventListener('click', function(e) {
+//             e.preventDefault();
+            
+//             // حذف کلاس active از همه لینک‌ها
+//             categoryLinks.forEach(l => l.classList.remove('active'));
+            
+//             // اضافه کردن کلاس active به لینک کلیک شده
+//             this.classList.add('active');
+            
+//             // در اینجا می‌توانید کد فیلتر کردن مقالات بر اساس دسته‌بندی را اضافه کنید
+//             const category = this.textContent.split(' ')[0];
+//             alert(`فیلتر مقالات بر اساس دسته‌بندی: ${category}`);
+//         });
+//     });
+    
+//     // مدیریت جستجو
+//     const searchInput = document.querySelector('.search-box input');
+//     const searchIcon = document.querySelector('.search-box i');
+    
+//     searchIcon.addEventListener('click', function() {
+//         performSearch();
+//     });
+    
+//     searchInput.addEventListener('keypress', function(e) {
+//         if (e.key === 'Enter') {
+//             performSearch();
+//         }
+//     });
+    
+//     function performSearch() {
+//         const searchTerm = searchInput.value.trim();
+//         if (searchTerm) {
+//             alert(`جستجو برای: ${searchTerm}`);
+//             // در اینجا می‌توانید کد جستجوی واقعی را اضافه کنید
+//         }
+//     }
+
+//     // مدیریت فرم خبرنامه
+//     const newsletterForm = document.querySelector('form');
+//     if (newsletterForm) {
+//         newsletterForm.addEventListener('submit', function(e) {
+//             e.preventDefault();
+//             const emailInput = this.querySelector('input[type="email"]');
+//             if (emailInput.value) {
+//                 alert(`ایمیل ${emailInput.value} با موفقیت ثبت شد!`);
+//                 emailInput.value = '';
+//             }
+//         });
+//     }
+// });
+

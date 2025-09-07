@@ -14,6 +14,10 @@
             margin: 0 auto;
             position: relative;
         }
+        .pagination-btn svg{
+            width: 20px;
+            height: 20px;
+        }
     </style>
     <link rel="stylesheet" href="{% static 'css/neows.css' %}">
 {% endblock css %}
@@ -44,43 +48,44 @@
         </header>
         
         <!-- فیلترها و جستجو -->
-        <div class="filters">
-            <div class="filter-group">
-                <label for="date">تاریخ</label>
-                <input type="date" id="date" value="2023-08-30">
+        {% comment %}         
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="date">تاریخ</label>
+                    <input type="date" id="date" value="2023-08-30">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="hazardous">خطر برخورد</label>
+                    <select id="hazardous">
+                        <option value="all">همه اجرام</option>
+                        <option value="true">خطرناک</option>
+                        <option value="false">بی‌خطر</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="distance">فاصله از زمین</label>
+                    <select id="distance">
+                        <option value="all">همه فواصل</option>
+                        <option value="close">نزدیک (کمتر از 1 میلیون km)</option>
+                        <option value="medium">متوسط (1 تا 5 میلیون km)</option>
+                        <option value="far">دور (بیش از 5 میلیون km)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="btn btn-primary" id="apply-filters">
+                        <i class="fas fa-filter"></i>
+                        اعمال فیلتر
+                    </button>
+                    <button class="btn btn-secondary" id="reset-filters">
+                        <i class="fas fa-redo"></i>
+                        بازنشانی
+                    </button>
+                </div>
             </div>
-            
-            <div class="filter-group">
-                <label for="hazardous">خطر برخورد</label>
-                <select id="hazardous">
-                    <option value="all">همه اجرام</option>
-                    <option value="true">خطرناک</option>
-                    <option value="false">بی‌خطر</option>
-                </select>
-            </div>
-            
-            <div class="filter-group">
-                <label for="distance">فاصله از زمین</label>
-                <select id="distance">
-                    <option value="all">همه فواصل</option>
-                    <option value="close">نزدیک (کمتر از 1 میلیون km)</option>
-                    <option value="medium">متوسط (1 تا 5 میلیون km)</option>
-                    <option value="far">دور (بیش از 5 میلیون km)</option>
-                </select>
-            </div>
-            
-            <div class="filter-buttons">
-                <button class="btn btn-primary" id="apply-filters">
-                    <i class="fas fa-filter"></i>
-                    اعمال فیلتر
-                </button>
-                <button class="btn btn-secondary" id="reset-filters">
-                    <i class="fas fa-redo"></i>
-                    بازنشانی
-                </button>
-            </div>
-        </div>
-        
+         {% endcomment %}
         <!-- آمار کلی -->
         <div class="stats-container">
             <div class="stat-card">
@@ -133,9 +138,13 @@
         
         <!-- صفحه‌بندی -->
         <div class="pagination">
-            <a href="#" id="prev-page"><i class="fas fa-arrow-right"></i></a>
+            <a href="#" id="prev-page" class='pagination-btn'>
+                {% include 'svg/arrow-right.svg' %}
+            </a>
             <span id="page-numbers"></span>
-            <a href="#" id="next-page"><i class="fas fa-arrow-left"></i></a>
+            <a href="#" id="next-page" class='pagination-btn'>
+                {% include 'svg/arrow-left.svg' %}
+            </a>
         </div>
     </div>
 {% endblock content %}

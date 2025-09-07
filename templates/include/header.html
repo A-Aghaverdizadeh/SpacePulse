@@ -7,8 +7,8 @@
         <li><a href="{% url 'home' %}">خانه</a></li>
         {% comment %} <li><a href="{% url 'blog' %}">وبلاگ</a></li> {% endcomment %}
         <li><a href="{% url 'neows' %}">اجرام نزدیک به زمین</a></li>
-        <li><a href="#">اطلاعات زنده</a></li>
-        <li><a href="#">درباره ما</a></li>
+        {% comment %} <li><a href="#">اطلاعات زنده</a></li> {% endcomment %}
+        <li><a href="{% url 'about-us' %}">درباره ما</a></li>
         <li><a href="#">تماس با ما</a></li>
     </ul>
     

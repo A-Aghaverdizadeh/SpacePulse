@@ -1,0 +1,571 @@
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: normal;
+  src: url('/static/font/iransansdnweb.ttf') format('truetype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: IRANSans;
+    transition: background-color 0.5s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background: #0a0e29;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body.light-mode {
+    background: #f0f2f5;
+    color: #333;
+}
+
+/* دکمه تغییر حالت */
+.theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.theme-toggle {
+    background: rgba(78, 84, 200, 0.2);
+    border: none;
+    width: 60px;
+    height: 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .theme-toggle {
+    background: rgba(37, 99, 235, 0.2);
+}
+
+.theme-toggle::before {
+    content: '☀️';
+    position: absolute;
+    left: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.theme-toggle::after {
+    content: '🌙';
+    position: absolute;
+    right: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.toggle-thumb {
+    width: 24px;
+    height: 24px;
+    background: #4e54c8;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.3s ease;
+    left: 3px;
+    z-index: 2;
+}
+
+body.light-mode .toggle-thumb {
+    background: #2563eb;
+    left: 33px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* هدر */
+.about-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+}
+
+.about-title {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .about-title {
+    background: linear-gradient(to right, #2563eb, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-subtitle {
+    color: #a0a7e6;
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+body.light-mode .about-subtitle {
+    color: #5e6ebf;
+}
+
+/* بخش ماموریت و چشم انداز */
+.mission-vision {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.mission-card, .vision-card {
+    background: rgba(13, 18, 48, 0.7);
+    border: 1px solid #2a2f6b;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(78, 84, 200, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+body.light-mode .mission-card,
+body.light-mode .vision-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d1d5db;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+.mission-icon, .vision-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(78, 84, 200, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.8rem;
+    color: #8f94fb;
+}
+
+body.light-mode .mission-icon,
+body.light-mode .vision-icon {
+    background: rgba(37, 99, 235, 0.2);
+    color: #2563eb;
+}
+
+.mission-title, .vision-title {
+    font-size: 1.5rem;
+    color: #8f94fb;
+    margin-bottom: 1rem;
+}
+
+body.light-mode .mission-title,
+body.light-mode .vision-title {
+    color: #2563eb;
+}
+
+.mission-text, .vision-text {
+    color: #a0a7e6;
+    line-height: 1.8;
+}
+
+body.light-mode .mission-text,
+body.light-mode .vision-text {
+    color: #6b7280;
+}
+
+/* تیم ما */
+.team-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    color: #8f94fb;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+body.light-mode .section-title {
+    color: #2563eb;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    border-radius: 3px;
+}
+
+body.light-mode .section-title::after {
+    background: linear-gradient(to right, #2563eb, #3b82f6);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-member {
+    background: rgba(13, 18, 48, 0.7);
+    border: 1px solid #2a2f6b;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(78, 84, 200, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-mode .team-member {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d1d5db;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(78, 84, 200, 0.3);
+}
+
+body.light-mode .team-member:hover {
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+}
+
+.member-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    border: 3px solid #4e54c8;
+}
+
+body.light-mode .member-image {
+    border: 3px solid #2563eb;
+}
+
+.member-name {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+body.light-mode .member-name {
+    color: #1f2937;
+}
+
+.member-role {
+    color: #8f94fb;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+body.light-mode .member-role {
+    color: #2563eb;
+}
+
+.member-bio {
+    color: #a0a7e6;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+body.light-mode .member-bio {
+    color: #6b7280;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(78, 84, 200, 0.2);
+    color: #8f94fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+body.light-mode .social-link {
+    background: rgba(37, 99, 235, 0.2);
+    color: #2563eb;
+}
+
+.social-link:hover {
+    background: #4e54c8;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+body.light-mode .social-link:hover {
+    background: #2563eb;
+}
+
+/* تاریخچه */
+.history-section {
+    margin-bottom: 4rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+body.light-mode .timeline::after {
+    background: linear-gradient(to bottom, #2563eb, #3b82f6);
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: left;
+    padding-right: 30px;
+    padding-left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: right;
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+.timeline-content {
+    background: rgba(13, 18, 48, 0.7);
+    border: 1px solid #2a2f6b;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(78, 84, 200, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+body.light-mode .timeline-content {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d1d5db;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background: #4e54c8;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-radius: 3px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -10px;
+    background: #4e54c8;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-radius: 3px;
+}
+
+body.light-mode .timeline-content::after {
+    background: #2563eb;
+}
+
+.timeline-year {
+    font-size: 1.2rem;
+    color: #8f94fb;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+body.light-mode .timeline-year {
+    color: #2563eb;
+}
+
+.timeline-text {
+    color: #a0a7e6;
+    line-height: 1.6;
+}
+
+body.light-mode .timeline-text {
+    color: #6b7280;
+}
+
+/* تماس با ما */
+.contact-section {
+    margin-bottom: 4rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.contact-info {
+    background: rgba(13, 18, 48, 0.7);
+    border: 1px solid #2a2f6b;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(78, 84, 200, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+body.light-mode .contact-info {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d1d5db;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(78, 84, 200, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    color: #8f94fb;
+    font-size: 1.2rem;
+}
+
+body.light-mode .contact-icon {
+    background: rgba(37, 99, 235, 0.2);
+    color: #2563eb;
+}
+
+.contact-details h4 {
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+body.light-mode .contact-details h4 {
+    color: #1f2937;
+}
+
+.contact-details p {
+    color: #a0a7e6;
+}
+
+body.light-mode .contact-details p {
+    color: #6b7280;
+}
+
+/* فوتر */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid #2a2f6b;
+    color: #a0a7e6;
+}
+
+body.light-mode .footer {
+    border-top: 1px solid #d1d5db;
+    color: #6b7280;
+}
+
+/* رسپانسیو برای موبایل */
+@media (max-width: 968px) {
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0;
+        text-align: left;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after,
+    .timeline-item:nth-child(even) .timeline-content::after {
+        left: 50px;
+        right: auto;
+    }
+    
+    .theme-toggle-container {
+        top: 10px;
+        left: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .about-title {
+        font-size: 2.2rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}

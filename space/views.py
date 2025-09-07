@@ -105,3 +105,16 @@ class NeoWsView(View):
         }
 
         return JsonResponse(response)
+    
+class AboutUsView(View):
+    template_name = 'space/about-us.html'
+
+    def get(self, requests):
+
+        context = {
+
+        }
+
+        return render(requests, self.template_name, context)
+    
+
