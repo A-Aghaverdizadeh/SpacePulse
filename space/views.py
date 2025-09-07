@@ -4,7 +4,7 @@ from datetime import datetime
 from django.db.models import Min, Max
 from django.http import JsonResponse
 from django.views import View
-from .models import APOD, NeoWs
+from .models import APOD, NeoWs, Developer
 
 class HomePage(View):
     template_name = 'space/home.html'
@@ -110,9 +110,11 @@ class AboutUsView(View):
     template_name = 'space/about-us.html'
 
     def get(self, requests):
+        developers = Developer.objects.all()
+
 
         context = {
-
+            'developers': developers,
         }
 
         return render(requests, self.template_name, context)

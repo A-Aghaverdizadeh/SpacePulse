@@ -83,6 +83,20 @@
                         <a href="#" class="social-link">{% include "svg/github.svg" %}</a>
                     </div>
                 </div>
+
+                {% for developer in developers %}
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="امیر حسینی" class="member-image">
+                        <h3 class="member-name">امیر حسینی</h3>
+                        <p class="member-role">توسعه‌دهنده ارشد</p>
+                        <p class="member-bio">امیر مسئول توسعه پلتفرم‌های نرم‌افزاری ما است. او عاشق ترکیب علم نجوم با فناوری‌های روز است تا تجربه‌های کاربری منحصر به فردی خلق کند.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">{% include "svg/instagram.svg" %}</a>
+                            <a href="#" class="social-link">{% include "svg/telegram.svg" %}</a>
+                            <a href="#" class="social-link">{% include "svg/github.svg" %}</a>
+                        </div>
+                    </div> 
+                {% endfor %}
                 
             </div>
         </section>

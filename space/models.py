@@ -36,3 +36,18 @@ class NeoWs(models.Model):
 
     def __str__(self):
         return f"NeoWs {self.name}"
+
+class Developer(models.Model):
+    profile = models.ImageField(upload_to='profile')
+    name = models.CharField(max_length=264)
+    Position = models.CharField(max_length=264)
+    description = models.TextField()
+    github = models.CharField(max_length=400)
+    instagram = models.CharField(max_length=400)
+    telegram = models.CharField(max_length=400)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name
