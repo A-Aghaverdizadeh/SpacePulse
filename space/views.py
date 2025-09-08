@@ -5,6 +5,7 @@ from django.db.models import Min, Max
 from django.http import JsonResponse
 from django.views import View
 from .models import APOD, NeoWs, Developer
+from .forms import ContactUsForm
 
 class HomePage(View):
     template_name = 'space/home.html'
@@ -123,11 +124,13 @@ class ContactUsView(View):
     template_name = 'space/contact-us.html'
 
     def get(self, requests):
-
+        form = ContactUsForm()
         context = {
-
+            'form': form,
         }
 
         return render(requests, self.template_name, context)
 
+    def post(self, requests):
+        pass
 

@@ -1,6 +1,6 @@
 from django.utils.html import format_html
 from django.contrib import admin
-from .models import APOD, NeoWs, Developer
+from .models import APOD, NeoWs, Developer, ContactUs
 
 admin.site.register(APOD)
 
@@ -32,3 +32,8 @@ class DeveloperAdmin(admin.ModelAdmin):
         if obj.profile:
             return format_html(f'<img src="{obj.profile.url}" style="max-width:40px; max-height:40px"/>')
         return "No Image"
+    
+@admin.register(ContactUs)
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'email', 'created_at']
+    search_fields = ['full_name', 'email']
