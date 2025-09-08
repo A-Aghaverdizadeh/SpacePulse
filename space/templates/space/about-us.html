@@ -70,30 +70,17 @@
             <h2 class="section-title">تیم ما</h2>
             
             <div class="team-grid">
-
-                <!-- عضو تیم ۳ -->
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="امیر حسینی" class="member-image">
-                    <h3 class="member-name">امیر حسینی</h3>
-                    <p class="member-role">توسعه‌دهنده ارشد</p>
-                    <p class="member-bio">امیر مسئول توسعه پلتفرم‌های نرم‌افزاری ما است. او عاشق ترکیب علم نجوم با فناوری‌های روز است تا تجربه‌های کاربری منحصر به فردی خلق کند.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">{% include "svg/instagram.svg" %}</a>
-                        <a href="#" class="social-link">{% include "svg/telegram.svg" %}</a>
-                        <a href="#" class="social-link">{% include "svg/github.svg" %}</a>
-                    </div>
-                </div>
-
+                
                 {% for developer in developers %}
                     <div class="team-member">
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="امیر حسینی" class="member-image">
-                        <h3 class="member-name">امیر حسینی</h3>
-                        <p class="member-role">توسعه‌دهنده ارشد</p>
-                        <p class="member-bio">امیر مسئول توسعه پلتفرم‌های نرم‌افزاری ما است. او عاشق ترکیب علم نجوم با فناوری‌های روز است تا تجربه‌های کاربری منحصر به فردی خلق کند.</p>
+                        <img src="{{ developer.profile.url }}" alt="امیر حسینی" class="member-image">
+                        <h3 class="member-name">{{ developer.name }}</h3>
+                        <p class="member-role">{{ developer.Position }}</p>
+                        <p class="member-bio">{{ developer.description }}</p>
                         <div class="social-links">
-                            <a href="#" class="social-link">{% include "svg/instagram.svg" %}</a>
-                            <a href="#" class="social-link">{% include "svg/telegram.svg" %}</a>
-                            <a href="#" class="social-link">{% include "svg/github.svg" %}</a>
+                            <a href="{{ developer.instagram }}" class="social-link">{% include "svg/instagram.svg" %}</a>
+                            <a href="{{ developer.telegram }}" class="social-link">{% include "svg/telegram.svg" %}</a>
+                            <a href="{{ developer.github }}" class="social-link">{% include "svg/github.svg" %}</a>
                         </div>
                     </div> 
                 {% endfor %}
@@ -211,9 +198,7 @@
         </section>
         
         <!-- فوتر -->
-        <footer class="footer">
-            <p>© 1404 - تمامی حقوق برای <a href="https://robodev.ir/">روبودو</a> محفوظ است.</p>
-        </footer>
+        {% include "include/footer.html" %}
 {% endblock content %}
 
 {% block script %}

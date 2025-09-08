@@ -24,11 +24,11 @@ class DeveloperAdmin(admin.ModelAdmin):
     def profile_preview(self, obj):
         """ Display image preview inline if available. """
         if obj.profile:
-            return format_html(f'<img src="{obj.profile.url}" style="max-width:300px; max-height:300px"/>')
+            return format_html(f'<img src="{obj.profile.url}" style="max-width:200px; max-height:200px"/>')
         return "No Image"
     
     def profile_small_preview(self, obj):
         """ Display image preview inline if available. """
         if obj.profile:
-            return format_html(f'<img src="{obj.profile.url}" style="max-width:100px; max-height:100px"/>')
+            return format_html(f'<img src="{obj.profile.url}" style="max-width:40px; max-height:40px"/>')
         return "No Image"

@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{% static 'css/contact-us.css' %}">
+    <style>
+        .contact-icon svg{
+            width: 35px;
+            height: 35px;
+        }
+    </style>
+{% endblock css %}
+
+{% block content %}
+   <!-- نوار ناوبری -->
+    
+    {% include 'include/header.html' %}
+    
+    <!-- پس زمینه ستاره ها -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- خورشید برای حالت روز -->
+    <div class="sun"></div>
+    
+    <!-- ابرهای شناور -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    
+    <!-- سیاره تزئینی -->
+    <div class="planet"></div>
+    
+    <div class="container">
+        <!-- هدر -->
+        <header class="contact-header">
+            <h1 class="contact-title">تماس با ما</h1>
+            <p class="contact-subtitle">ما اینجا هستیم تا به سوالات شما پاسخ دهیم و ایده‌هایتان را بشنویم. از طریق راه‌های زیر با ما در ارتباط باشید.</p>
+        </header>
+        
+        <!-- شبکه اطلاعات تماس -->
+        <div class="contact-grid">
+            <!-- کارت آدرس -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    {% include "svg/location-dot.svg" %}
+                </div>
+                <h3 class="contact-card-title">آدرس ما</h3>
+                <p class="contact-card-text">اردبیل، مشگین شهر، خیابان آیت الله مشگینی، بالاتر از بانک صادرات، دفتر روبودو</p>
+                <a href="#map" class="contact-link">نمایش روی نقشه <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <!-- کارت تلفن -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    {% include "svg/phone.svg" %}
+                </div>
+                <h3 class="contact-card-title">تلفن تماس</h3>
+                <p class="contact-card-text">شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر<br>پنجشنبه: ۸ صبح تا ۱۲ ظهر</p>
+                <a href="tel:+9809050786194" class="contact-link">09050786194 <i class="fas fa-arrow-left"></i></a>
+                <a href="tel:+9809017747187" class="contact-link">09017747187 <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <!-- کارت ایمیل -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    {% include "svg/envelope.svg" %}
+                </div>
+                <h3 class="contact-card-title">ایمیل</h3>
+                <p class="contact-card-text">برای اطلاعات بیشتر و پیشنهادات می‌توانید از طریق ایمیل با ما در ارتباط باشید</p>
+                <a href="mailto:info@rasadgah-space.ir" class="contact-link">amiraghaverdigit@gmail.com <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+        
+        <!-- نقشه -->
+        <section class="map-section">
+            <h2 class="section-title">موقعیت ما روی نقشه</h2>
+            
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="map-overlay">
+                    <h3 class="map-overlay-title">دفتر روبودو</h3>
+                    <p class="map-overlay-text">اردبیل، مشگین شهر، آیت الله مشگینی بالاتر از بانک صادرات</p>
+                    <p class="map-overlay-text">تلفن: 09050786194</p>
+                    <p class="map-overlay-text">تلفن: 09017747187</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- فرم تماس -->
+        <section class="contact-form-section">
+            <h2 class="section-title">فرم تماس با ما</h2>
+            
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">نام کامل</label>
+                    <input type="text" id="name" class="form-input" placeholder="نام و نام خانوادگی خود را وارد کنید" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">ایمیل</label>
+                    <input type="email" id="email" class="form-input" placeholder="ایمیل خود را وارد کنید" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject" class="form-label">موضوع</label>
+                    <input type="text" id="subject" class="form-input" placeholder="موضوع پیام خود را وارد کنید" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="form-label">پیام</label>
+                    <textarea id="message" class="form-textarea" placeholder="متن پیام خود را بنویسید..." required></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit">ارسال پیام</button>
+            </form>
+        </section>
+        
+        <!-- سوالات متداول -->
+        <section class="faq-section">
+            <h2 class="section-title">سوالات متداول</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>ساعات کاری رصدخانه به چه صورت است؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>رصدخانه همه روزه از ساعت ۱۰ صبح تا ۱۰ شب برای بازدید عموم باز است. بخش اداری از شنبه تا چهارشنبه از ساعت ۸ صبح تا ۵ عصر و پنجشنبه‌ها از ۸ صبح تا ۱۲ ظهر فعال است.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>آیا امکان رزرو تلسکوپ برای استفاده شخصی وجود دارد؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>بله، شما می‌توانید با هماهنگی قبلی از تلسکوپ‌های رصدخانه برای رصد شخصی استفاده کنید. برای رزرو با شماره ۰۲۱-۲۳۴۵۶۷۸۹ تماس بگیرید.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>چگونه می‌توانم در کارگاه‌های آموزشی شرکت کنم؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>کارگاه‌های آموزشی رصدخانه به صورت دوره‌ای برگزار می‌شوند. برای اطلاع از日程 کارگاه‌ها و ثبت نام، به بخش رویدادهای سایت مراجعه کنید یا در خبرنامه ما عضو شوید.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>آیا امکان بازدید گروهی از رصدخانه وجود دارد؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>بله، برای بازدیدهای گروهی (مدارس، دانشگاه‌ها، مؤسسات) باید حداقل یک هفته قبل هماهنگی انجام شود. لطفاً برای هماهنگی با ایمیل info@rasadgah-space.ir تماس بگیرید.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- فوتر -->
+        {% include "include/footer.html" %}
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{% static 'js/contact-us.js' %}"></script>
+{% endblock script %}

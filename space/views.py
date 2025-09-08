@@ -119,4 +119,15 @@ class AboutUsView(View):
 
         return render(requests, self.template_name, context)
     
+class ContactUsView(View):
+    template_name = 'space/contact-us.html'
+
+    def get(self, requests):
+
+        context = {
+
+        }
+
+        return render(requests, self.template_name, context)
+
 
