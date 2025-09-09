@@ -4,7 +4,7 @@ from datetime import datetime
 from django.db.models import Min, Max
 from django.http import JsonResponse
 from django.views import View
-from .models import APOD, NeoWs, Developer
+from .models import APOD, NeoWs, Developer, CommonQuestion
 from .forms import ContactUsForm
 
 class HomePage(View):
@@ -123,14 +123,24 @@ class AboutUsView(View):
 class ContactUsView(View):
     template_name = 'space/contact-us.html'
 
-    def get(self, requests):
+    def get(self, request):
+        questions = CommonQuestion.objects.all()
         form = ContactUsForm()
+        
         context = {
             'form': form,
+            'questions': questions,
         }
 
-        return render(requests, self.template_name, context)
+        return render(request, self.template_name, context)
 
-    def post(self, requests):
-        pass
+    def post(self, request):
+        
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return JsonResponse({'message': 'پیام شما با موفقیت دریافت شد'})
+        else:
+            return JsonResponse({'message': 'خطایی هنگام فرستادن پیام رخ داد!!!'}, status=400)
 

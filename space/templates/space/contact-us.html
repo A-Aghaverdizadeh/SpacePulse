@@ -123,46 +123,17 @@
         <!-- سوالات متداول -->
         <section class="faq-section">
             <h2 class="section-title">سوالات متداول</h2>
-            
+            {% for question in questions %}
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>ساعات کاری رصدخانه به چه صورت است؟</span>
+                    <span>{{ question.title }}</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>رصدخانه همه روزه از ساعت ۱۰ صبح تا ۱۰ شب برای بازدید عموم باز است. بخش اداری از شنبه تا چهارشنبه از ساعت ۸ صبح تا ۵ عصر و پنجشنبه‌ها از ۸ صبح تا ۱۲ ظهر فعال است.</p>
+                    <p>{{ question.description }}</p>
                 </div>
             </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>آیا امکان رزرو تلسکوپ برای استفاده شخصی وجود دارد؟</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>بله، شما می‌توانید با هماهنگی قبلی از تلسکوپ‌های رصدخانه برای رصد شخصی استفاده کنید. برای رزرو با شماره ۰۲۱-۲۳۴۵۶۷۸۹ تماس بگیرید.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>چگونه می‌توانم در کارگاه‌های آموزشی شرکت کنم؟</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>کارگاه‌های آموزشی رصدخانه به صورت دوره‌ای برگزار می‌شوند. برای اطلاع از日程 کارگاه‌ها و ثبت نام، به بخش رویدادهای سایت مراجعه کنید یا در خبرنامه ما عضو شوید.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>آیا امکان بازدید گروهی از رصدخانه وجود دارد؟</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>بله، برای بازدیدهای گروهی (مدارس، دانشگاه‌ها، مؤسسات) باید حداقل یک هفته قبل هماهنگی انجام شود. لطفاً برای هماهنگی با ایمیل info@rasadgah-space.ir تماس بگیرید.</p>
-                </div>
-            </div>
+            {% endfor %}
         </section>
         
         <!-- فوتر -->

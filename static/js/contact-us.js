@@ -1,4 +1,5 @@
- // مدیریت تغییر تم
+const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+// مدیریت تغییر تم
 function createStars() {
     const starsContainer = document.getElementById('stars');
     const starsCount = 150;
@@ -151,24 +152,37 @@ function updateMapTheme(theme) {
     marker.bindPopup("<b>دفتر روبودو</b><br>مشگین شهر، آیت الله مشگینی");
 }
 
+const contactForm = document.querySelector("#contact-form");
+
 // مدیریت فرم تماس
 function setupContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    
-    contactForm.addEventListener('submit', function(e) {
+
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // در اینجا می‌توانید کد ارسال فرم را اضافه کنید
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
+        const formData = new FormData(contactForm);
         
-        // شبیه‌سازی ارسال موفق فرم
-        alert(`پیام شما با موفقیت ارسال شد!\n\nموضوع: ${formData.subject}\n\nما در اسرع وقت با شما تماس خواهیم گرفت.`);
-        contactForm.reset();
+        try {
+            const response = await fetch("/contact-us", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRFToken": csrftoken,
+                },
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                contactForm.reset();
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            alert("خطا در ارسال فرم!");
+            console.error(error);
+        }
     });
 }
 

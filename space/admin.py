@@ -1,6 +1,6 @@
 from django.utils.html import format_html
 from django.contrib import admin
-from .models import APOD, NeoWs, Developer, ContactUs
+from .models import APOD, NeoWs, Developer, ContactUs, CommonQuestion
 
 admin.site.register(APOD)
 
@@ -37,3 +37,7 @@ class DeveloperAdmin(admin.ModelAdmin):
 class ContactUsAdmin(admin.ModelAdmin):
     list_display = ['full_name', 'email', 'created_at']
     search_fields = ['full_name', 'email']
+
+@admin.register(CommonQuestion)
+class CommonQuestionAdmin(admin.ModelAdmin):
+    list_display = ['title']
