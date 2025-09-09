@@ -31,6 +31,9 @@
     <!-- سیاره تزئینی -->
     <div class="planet"></div>
     
+    <!-- سیستم نوتیفیکیشن -->
+    <div class="notification-container" id="notification-container"></div>
+
     <div class="container">
         <!-- هدر -->
         <header class="contact-header">
@@ -116,7 +119,10 @@
                     {{ form.description }}
                 </div>
                 
-                <button type="submit" class="form-submit">ارسال پیام</button>
+                <button type="submit" class="form-submit" id="submit-button">
+                    <div class="loading-spinner" id="loading-spinner"></div>
+                    <span class="submit-text" id="submit-text">ارسال پیام</span>
+                </button>
             </form>
         </section>
         

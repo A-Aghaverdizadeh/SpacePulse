@@ -152,14 +152,95 @@ function updateMapTheme(theme) {
     marker.bindPopup("<b>دفتر روبودو</b><br>مشگین شهر، آیت الله مشگینی");
 }
 
-const contactForm = document.querySelector("#contact-form");
+function showNotification(type, title, message, duration = 5000) {
+    const notificationContainer = document.getElementById('notification-container');
+
+    // ایجاد عنصر نوتیفیکیشن
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+
+    // آیکون بر اساس نوع نوتیفیکیشن
+    let iconClass;
+    switch(type) {
+        case 'success':
+            iconClass = 'fas fa-check-circle';
+            break;
+        case 'error':
+            iconClass = 'fas fa-exclamation-circle';
+            break;
+        case 'warning':
+            iconClass = 'fas fa-exclamation-triangle';
+            break;
+        case 'info':
+            iconClass = 'fas fa-info-circle';
+            break;
+        default:
+            iconClass = 'fas fa-info-circle';
+    }
+
+    // محتوای نوتیفیکیشن
+    notification.innerHTML = `
+        <div class="notification-icon">
+            <i class="${iconClass}"></i>
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">${title}</div>
+            <div class="notification-message">${message}</div>
+        </div>
+        <button class="notification-close">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+
+    // اضافه کردن نوتیفیکیشن به صفحه
+    notificationContainer.appendChild(notification);
+
+    // نمایش انیمیشن
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+
+    // بستن نوتیفیکیشن با کلیک روی دکمه بستن
+    const closeButton = notification.querySelector('.notification-close');
+    closeButton.addEventListener('click', () => {
+        closeNotification(notification);
+    });
+
+    // بستن خودکار نوتیفیکیشن پس از مدت زمان مشخص
+    if (duration > 0) {
+        setTimeout(() => {
+            closeNotification(notification);
+        }, duration);
+    }
+
+    return notification;
+    }
+
+    function closeNotification(notification) {
+    notification.classList.add('hide');
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 300);
+}
+
+
 
 // مدیریت فرم تماس
 function setupContactForm() {
+    const contactForm = document.querySelector("#contact-form");
+    const submitButton = document.getElementById('submit-button');
+    const submitText = document.getElementById('submit-text');
+    const loadingSpinner = document.getElementById('loading-spinner');
 
-    contactForm.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit',async function(e) {
         e.preventDefault();
         
+        submitButton.disabled = true;
+        submitText.style.opacity = '0.5';
+        loadingSpinner.style.display = 'block';
+
         const formData = new FormData(contactForm);
         
         try {
@@ -173,15 +254,31 @@ function setupContactForm() {
 
             const data = await response.json();
 
+
             if (response.ok) {
-                alert(data.message);
+                showNotification(
+                    'success', 
+                    data.message, 
+                    'ما در اسرع وقت با شما تماس خواهیم گرفت.', 
+                    5000
+                );
                 contactForm.reset();
             } else {
                 alert(data.message);
+                showNotification(
+                    'error', 
+                    data.message, 
+                    'خطا', 
+                    5000
+                );
             }
         } catch (error) {
             alert("خطا در ارسال فرم!");
             console.error(error);
+        } finally {
+            submitButton.disabled = false;
+            submitText.style.opacity = '1';
+            loadingSpinner.style.display = 'none';
         }
     });
 }
