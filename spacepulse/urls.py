@@ -1,3 +1,4 @@
+from django.conf.urls import handler404, handler403, handler400, handler500
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -12,3 +13,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
 
+handler404 = 'space.views.page404'
+# handler403 = 'space.views.page403'
+# handler400 = 'space.views.page400'
+# handler500 = 'space.views.page500'

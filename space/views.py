@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from datetime import datetime
@@ -144,3 +145,26 @@ class ContactUsView(View):
         else:
             return JsonResponse({'message': 'خطایی هنگام فرستادن پیام رخ داد!!!'}, status=400)
 
+def fetch_astronauts(request):
+    url = "http://api.open-notify.org/astros.json"
+    response = requests.get(url)
+
+    return JsonResponse(response.json())
+
+def fetch_ISSLocation(request):
+    url = "http://api.open-notify.org/iss-now.json"
+    response = requests.get(url)
+
+    return JsonResponse(response.json())
+
+def page404(request, exception):
+    return render(request, 'error/404.html', status=404)
+
+def page403(request, exception):
+    return render(request, 'error/403.html', status=403)
+
+def page400(request, exception):
+    return render(request, 'error/400.html', status=400)
+
+def page500(request, exception):
+    return render(request, 'error/500.html')

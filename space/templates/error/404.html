@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    {% include 'include/header.html' %}
+    
+
+    <!-- خورشید برای حالت روز -->
+    <div class="sun"></div>
+    
+    <!-- ابرهای شناور -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+
+    <!-- ستاره‌های شناور -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- سیاره‌های شناور -->
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    
+    <div class="error-container">
+        <!-- انیمیشن 404 -->
+        <div class="error-animation">
+            <div class="number">4</div>
+            <div class="number zero">
+                <div class="astronaut">👨‍🚀</div>
+                0
+            </div>
+            <div class="number zero">4</div>
+        </div>
+        
+        <!-- متن خطا -->
+        <h1 class="error-title">صفحه مورد نظر پیدا نشد!</h1>
+        <p class="error-message">
+            متأسفیم، اما صفحه‌ای که به دنبال آن هستید وجود ندارد یا ممکن است حذف شده باشد.
+            شاید نام آن تغییر کرده یا موقتاً در دسترس نیست.
+        </p>
+        
+        
+        <!-- دکمه‌های اقدام -->
+        <div class="action-buttons">
+            <a href="{% url 'home' %}" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                بازگشت به خانه
+            </a>
+            <a href="#" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                بازگشت به صفحه قبل
+            </a>
+            <a href="#" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                تماس با پشتیبانی
+            </a>
+        </div>
+        
+        <!-- فوتر -->
+        {% include 'include/footer.html' %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/contact-us.js' %}"></script>
+{% endblock %}
